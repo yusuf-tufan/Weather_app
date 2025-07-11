@@ -1,12 +1,20 @@
 import requests
 from tkinter import *
 import messagebox
+from PIL import ImageTk, Image
 
 #window
 window=Tk()
 window.title('Weather App')
-window.minsize(1000,600)
+window.minsize(1000,700)
 window.configure(bg='light blue')
+#image
+img=Image.open('image_weather.png')
+resized=img.resize((1000,700),Image.Resampling.LANCZOS)
+itk=ImageTk.PhotoImage(resized)
+lbl=Label(window,image=itk)
+lbl.image=itk
+lbl.pack()
 
 # get data
 def get_data():
@@ -48,5 +56,7 @@ user_input.place(x=450,y=30)
 #click button
 click_button=Button(text='SEARCH',command=get_data,bg='light blue',fg='red',font=('Arial',10,'italic','bold'))
 click_button.place(x=510,y=60)
+
+
 
 window.mainloop()
